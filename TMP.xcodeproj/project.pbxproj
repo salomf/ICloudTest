@@ -13,6 +13,8 @@
 		2B9789A719A3403200223B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9789A519A3403200223B3F /* Main.storyboard */; };
 		2B9789A919A3403200223B3F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9789A819A3403200223B3F /* Images.xcassets */; };
 		2B9789B519A3403200223B3F /* TMPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9789B419A3403200223B3F /* TMPTests.m */; };
+		2B9789BE19A3489900223B3F /* TMP.app in Resources */ = {isa = PBXBuildFile; fileRef = 2B97899819A3403200223B3F /* TMP.app */; };
+		2B9789C319A34AD900223B3F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9789C219A34AD900223B3F /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		2B9789AE19A3403200223B3F /* TMPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9789B319A3403200223B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B9789B419A3403200223B3F /* TMPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMPTests.m; sourceTree = "<group>"; };
+		2B9789BF19A349DB00223B3F /* TMP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMP.entitlements; sourceTree = "<group>"; };
+		2B9789C219A34AD900223B3F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9789C319A34AD900223B3F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,7 @@
 		2B97898F19A3403200223B3F = {
 			isa = PBXGroup;
 			children = (
+				2B9789C219A34AD900223B3F /* CloudKit.framework */,
 				2B97899A19A3403200223B3F /* TMP */,
 				2B9789B119A3403200223B3F /* TMPTests */,
 				2B97899919A3403200223B3F /* Products */,
@@ -79,6 +85,7 @@
 		2B97899A19A3403200223B3F /* TMP */ = {
 			isa = PBXGroup;
 			children = (
+				2B9789BF19A349DB00223B3F /* TMP.entitlements */,
 				2B97899F19A3403200223B3F /* AppDelegate.h */,
 				2B9789A019A3403200223B3F /* AppDelegate.m */,
 				2B9789A219A3403200223B3F /* ViewController.h */,
@@ -165,6 +172,12 @@
 				TargetAttributes = {
 					2B97899719A3403200223B3F = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = Q9V4W9AQXP;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					2B9789AD19A3403200223B3F = {
 						CreatedOnToolsVersion = 6.0;
@@ -196,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9789BE19A3489900223B3F /* TMP.app in Resources */,
 				2B9789A719A3403200223B3F /* Main.storyboard in Resources */,
 				2B9789A919A3403200223B3F /* Images.xcassets in Resources */,
 			);
@@ -332,9 +346,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TMP/TMP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -343,9 +361,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TMP/TMP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
