@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B32B3F019A374F900AD4894 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9789A519A3403200223B3F /* Main.storyboard */; };
 		2B97899E19A3403200223B3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97899D19A3403200223B3F /* main.m */; };
 		2B9789A119A3403200223B3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9789A019A3403200223B3F /* AppDelegate.m */; };
 		2B9789A419A3403200223B3F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9789A319A3403200223B3F /* ViewController.m */; };
-		2B9789A719A3403200223B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9789A519A3403200223B3F /* Main.storyboard */; };
 		2B9789A919A3403200223B3F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9789A819A3403200223B3F /* Images.xcassets */; };
 		2B9789B519A3403200223B3F /* TMPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9789B419A3403200223B3F /* TMPTests.m */; };
-		2B9789BE19A3489900223B3F /* TMP.app in Resources */ = {isa = PBXBuildFile; fileRef = 2B97899819A3403200223B3F /* TMP.app */; };
-		2B9789C319A34AD900223B3F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9789C219A34AD900223B3F /* CloudKit.framework */; };
+		2B9789C319A34AD900223B3F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9789C219A34AD900223B3F /* CloudKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,8 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B9789BE19A3489900223B3F /* TMP.app in Resources */,
-				2B9789A719A3403200223B3F /* Main.storyboard in Resources */,
+				2B32B3F019A374F900AD4894 /* Main.storyboard in Resources */,
 				2B9789A919A3403200223B3F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +422,7 @@
 				2B9789BA19A3403200223B3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B9789BB19A3403200223B3F /* Build configuration list for PBXNativeTarget "TMPTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +431,7 @@
 				2B9789BD19A3403200223B3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
