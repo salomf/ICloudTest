@@ -1,22 +1,56 @@
 //
 //  AppDelegate.m
-//  TMP
+//  CloudKitTest
 //
-//  Created by Mykola Salo on 8/19/14.
-//  Copyright (c) 2014 Mykola Salo. All rights reserved.
+//  Created by George Villasboas on 7/8/14.
+//  Copyright (c) 2014 CocoaHeads Brasil. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import <CloudKit/CloudKit.h>
+#import "CloudKitParams.h"
 
 @interface AppDelegate ()
-
+@property (readonly, nonatomic) CKContainer *defaultContainer;
 @end
 
 @implementation AppDelegate
-            
+
+- (CKContainer *)defaultContainer
+{
+    return [CKContainer defaultContainer];
+}
+
+/**
+ *  Check and ask for users permission on discoverability
+ */
+- (void)checkForCKDiscoverabiltyStatus
+{
+    // this will display a scary message for the user.
+    // I'd opened a radar suggesting tweaks on it, so users can securelly opt-in to it.
+    // more info: http://openradar.appspot.com/radar?id=5898405960220672
+    [self.defaultContainer statusForApplicationPermission:CKApplicationPermissionUserDiscoverability completionHandler:^(CKApplicationPermissionStatus applicationPermissionStatus, NSError *error) {
+        if (!error) {
+            if (applicationPermissionStatus != CKApplicationPermissionStatusGranted &&
+                applicationPermissionStatus != CKApplicationPermissionStatusDenied) {
+                // request authorization.
+                [self.defaultContainer requestApplicationPermission:CKApplicationPermissionUserDiscoverability completionHandler:nil];
+            }
+        }
+        else{
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge categories:nil]];
+    [application registerForRemoteNotifications];
+    
+    [self checkForCKDiscoverabiltyStatus];
+    
     return YES;
 }
 
@@ -40,6 +74,32 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"Remote push notification from CK recieved!");
+    
+    CKNotification *cloudKitNotification = [CKNotification
+                                            notificationFromRemoteNotificationDictionary:userInfo];
+    
+    if (cloudKitNotification.notificationType == CKNotificationTypeQuery) {
+        CKQueryNotification *queryNotification = (CKQueryNotification *)cloudKitNotification;
+        CKRecordID *recordID = [queryNotification recordID];
+        CKDatabase *publicDatabase = [[CKContainer defaultContainer] publicCloudDatabase];
+        
+        [publicDatabase fetchRecordWithID:recordID
+                        completionHandler:^(CKRecord *fetchedRecord, NSError *error) {
+                            if (error) {
+                                NSLog(@"ERROR FETCHING: %@", error);
+                            }
+                            else{
+                                if (fetchedRecord) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:GVCloudKitRecordCreationNotification object:fetchedRecord];
+                                }
+                            }
+                        }];
+    }
 }
 
 @end
